@@ -10,34 +10,28 @@
      <?php endif ?>
 
      <div class="container d-flex align-items-center justify-content-between gap-1 my-4">
-          <h2>Les <span style="border-bottom:2px solid blueViolet;">ar</span>ticles</h2>
-          <a href="/articles/create" class="btn btn-secondary btn-sm">Ajouter un nouvel article</a>
+          <h2>Les <span style="border-bottom:2px solid blueViolet;letter-spacing:3px">cat</span>égories</h2>
+          <a href="/category/create" class="btn btn-secondary btn-sm">Ajouter une nouvelle catégorie</a>
      </div>
 
      <table class="container table table-striped">
           <thead>
                <tr>
-                    <th></th>
+                    <th>N°</th>
                     <th>Nom</th>
-                    <th>Prix</th>
-                    <th>Catégorie associée</th>
-                    <th></th>
+                    <th style="width:300Px"></th>
                </tr>
           </thead>
           <tbody>
-               <?php foreach($articles as $article): ?>
+               <?php foreach($categories as $category): ?>
                     <tr>
-                         <td>
-                              <img style="border-radius:50%;" src="/<?=$article->image ?? ''?>" width="40px" height="40px" alt="">
-                         </td>
-                         <td><?=$article->nom?></td>
-                         <td><?=number_format($article->prix, thousands_separator: ' ')?></td>
-                         <td><?=$article->category ?? 'Pas de catégorie associée'?></td>
+                         <td><?=$category->id?></td>
+                         <td><?=$category->nom?></td>
                          <td>
                               <div class="d-flex">
-                                   <a href="/articles/edit/<?=$article->id?>" class="mx-1 btn btn-primary">Modifier</a>
-                                   <form action="/articles" method="POST">
-                                        <input type="hidden" value="<?=$article->id?>" name="id">
+                                   <a href="/category/edit/<?=$category->id?>" class="mx-1 btn btn-primary">Modifier</a>
+                                   <form action="/category" method="POST">
+                                        <input type="hidden" value="<?=$category->id?>" name="id">
                                         <input type="hidden" value="<?=$token?>" name="token">
                                         <input type="submit" class="btn btn-danger" value="Supprimer">
                                    </form>
@@ -51,7 +45,7 @@
      <div class="my-5 d-flex align-items-center justify-content-center flex-row gap-2">
           <?php for($i = 1; $i <= $maxPages; $i++): ?>
                <?php $class = $i == $page ? 'btn-primary' : 'btn-outline-primary' ?>
-               <a class="btn <?=$class?>" href="/articles?page=<?=$i?>"><?=$i?></a>
+               <a class="btn <?=$class?>" href="/category?page=<?=$i?>"><?=$i?></a>
           <?php endfor ?>
      </div>
 

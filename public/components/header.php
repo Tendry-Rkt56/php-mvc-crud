@@ -9,7 +9,7 @@
      <nav>
           <ul>
                <li><a <?php if (str_contains($uri, '/articles')): ?> style="color:blue" <?php endif ?>href="/articles">Les articles</a></li>
-               <li><a <?php if (str_contains($uri, '/category')):?>  style="color:blue"<?php endif ?>href="/users">Les catégories</a></li>
+               <li><a <?php if (str_contains($uri, '/category')):?>  style="color:blue"<?php endif ?>href="/category">Les catégories</a></li>
           </ul>
      </nav>
 </header>

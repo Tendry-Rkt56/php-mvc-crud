@@ -15,7 +15,7 @@ require_once '../Config/Uri.php';
      <link rel="stylesheet" href="/assets/styles/index.css">
 </head>
 <body>
-     <?php// require_once 'components/header.php' ?>
+     <?php require_once 'components/header.php' ?>
      <div class="containers">
           <?php require_once '../Config/Router.php' ?>
      </div>

@@ -53,13 +53,14 @@ class ArticleTable extends Table
      */
      public function create (array $data = [], array $files = []): bool
      {
-          $query = "INSERT INTO articles (nom, prix, image) VALUES (:nom, :prix, :image)";
+          $query = "INSERT INTO articles (nom, prix, image, category_id) VALUES (:nom, :prix, :image, :category)";
           $result = $this->db->getConn()->prepare($query);
           extract($data);
           $result->bindValue(':nom', $nom, \PDO::PARAM_STR);
           $result->bindValue(':prix', $prix, \PDO::PARAM_INT);
           $result->bindValue(':image', $this->checkImage($files['image']), \PDO::PARAM_STR);
-          // $result->bindValue(':category', $category, \PDO::PARAM_STR);
+          $result->bindValue(':category', $category, \PDO::PARAM_INT);
+          $_SESSION['success'] =  'Nouvel article crée';
           return $result->execute();
      }
 
@@ -69,7 +70,7 @@ class ArticleTable extends Table
      */
      public function all (int $limit, int $offset): mixed
      {
-          $query = $this->db->getConn()->query("SELECT * FROM articles WHERE id > 0 LIMIT $limit OFFSET $offset");
+          $query = $this->db->getConn()->query("SELECT articles.*, category.nom AS category FROM articles LEFT JOIN category ON (category.id = articles.category_id) WHERE articles.id > 0 LIMIT $limit OFFSET $offset");
           return $query->fetchAll(\PDO::FETCH_OBJ);
      }
 
@@ -101,14 +102,14 @@ class ArticleTable extends Table
      */
      public function update (int $id, array $data = [], array $files = []): bool
      {
-          $query = "UPDATE articles SET nom = :nom, prix = :prix, image = :image WHERE id = :id";
+          $query = "UPDATE articles SET nom = :nom, prix = :prix, image = :image, category_id = :category WHERE id = :id";
           $result = $this->db->getConn()->prepare($query);
           extract($data);
           $result->bindValue(":nom", $nom, \PDO::PARAM_STR);
           $result->bindValue(":prix", $prix, \PDO::PARAM_INT);
           $result->bindValue(":image", $this->checkImage($files['image'], $id), \PDO::PARAM_STR);
           $result->bindValue(":id", $id, \PDO::PARAM_INT);
-          // $result->bindValue(":category", $category, \PDO::PARAM_INT);
+          $result->bindValue(":category", $category, \PDO::PARAM_INT);
           $_SESSION['success'] = 'Article mis à jour';
           return $result->execute();
      }
@@ -120,7 +121,8 @@ class ArticleTable extends Table
      */
      public function getArticle (?int $id = null): mixed
      {
-          $query = "SELECT * FROM articles WHERE id = :id";
+          $query = "SELECT articles.id AS articleId, articles.nom AS nomArticle, articles.prix AS prix, articles.image AS image,
+                    category.id AS categoryId, category.nom AS nomCategory FROM articles LEFT JOIN category ON (category.id = articles.category_id) WHERE articles.id = :id";
           $result = $this->db->getConn()->prepare($query);
           $result->bindValue(':id', $id, \PDO::PARAM_STR);
           $result->execute();

@@ -9,7 +9,7 @@ class ArticleController extends Controller
      {
           $count = $this->container->getTable('article')->count();
           $page = isset($data['page']) ? $data['page'] : 1;
-          $limit = 1;
+          $limit = 5;
           $offset = ($page - 1) * $limit;
           $maxPages = ceil($count / $limit);
           $articles = $this->container->getTable('article')->all($limit, $offset);
@@ -20,10 +20,12 @@ class ArticleController extends Controller
                'maxPages' => $maxPages,
           ]);
      }
-
+     
      public function create ()
      {
+          $categories = $this->container->getTable('category')->getAll();
           return $this->render('articles.create', [
+               'categories' => $categories,
                'token' => $_SESSION['token']
           ]);
      }
@@ -50,8 +52,10 @@ class ArticleController extends Controller
      public function edit (int $id) 
      {
           $article = $this->container->getTable('article')->getArticle($id);
+          $categories = $this->container->getTable('category')->getAll();
           return $this->render('articles.edit', [
                'article' => $article,
+               'categories' => $categories,
                'token' => $_SESSION['token'],
           ]);
      }

@@ -12,6 +12,15 @@
           <input style="width:70%" type="hidden" name="token" value="<?=$token?>">
      </div>
      <div class="d-flex align-items-center justify-content-center container-fluid my-2">
+          <label style="width:30%" for="" class="fw-bolder">Prix: </label>
+          <select style="width:70%" name="category" id="" class="form-select">
+               <option value="" disabled>Séléctionner la catégorie associée</option>
+               <?php foreach($categories as $category): ?>
+                    <option value="<?=$category->id?>"><?=$category->nom?></option>
+               <?php endforeach?>
+          </select>
+     </div>
+     <div class="d-flex align-items-center justify-content-center container-fluid my-2">
           <label style="width:30%" for="" class="fw-bolder">Image: </label>
           <input style="width:70%" type="file" name="image" class="form-control">
      </div>
