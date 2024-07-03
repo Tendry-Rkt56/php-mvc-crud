@@ -7,17 +7,20 @@ class ArticleController extends Controller
 
      public function index (array $data = [])
      {
-          $count = $this->container->getTable('article')->count();
+          $count = $this->container->getTable('article')->getAll($data);
           $page = isset($data['page']) ? $data['page'] : 1;
           $limit = 5;
           $offset = ($page - 1) * $limit;
+          $articles = $this->container->getTable('article')->all($limit, $offset, $data);
           $maxPages = ceil($count / $limit);
-          $articles = $this->container->getTable('article')->all($limit, $offset);
+          $categories = $this->container->getTable('category')->getAll();
           return $this->render('articles.index', [
                'token' => $_SESSION['token'],
                'articles' => $articles,
                'page' => $page,
                'maxPages' => $maxPages,
+               'categories' => $categories,
+               'data' => $data,
           ]);
      }
      

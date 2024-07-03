@@ -64,13 +64,38 @@ class ArticleTable extends Table
           return $result->execute();
      }
 
+     public function getAll (array $data = [])
+     {
+          $query = "SELECT count(*) FROM articles 
+                    LEFT JOIN category ON (category.id = articles.category_id) WHERE articles.id > 0";
+          if (isset($data['category']) && $data['category'] != 1000) {
+               $query .= " AND articles.category_id = '$data[category]'";
+          }
+          if (isset($data['search'])) {
+               $search = $this->db->getConn()->quote('%'.$data['search'].'%');
+               $query .= " AND articles.nom LIKE $search";
+          }
+          $result = $this->db->getConn()->query($query);
+          return $result->fetchColumn();
+     }
+
      /**
      * Recupère tous les articles dans la base de donnée
      * @return mixed   
      */
-     public function all (int $limit, int $offset): mixed
+     public function all (int $limit, int $offset, array $data = []): mixed
      {
-          $query = $this->db->getConn()->query("SELECT articles.*, category.nom AS category FROM articles LEFT JOIN category ON (category.id = articles.category_id) WHERE articles.id > 0 LIMIT $limit OFFSET $offset");
+          $query = "SELECT articles.*, category.nom AS category FROM articles 
+                    LEFT JOIN category ON (category.id = articles.category_id) WHERE articles.id > 0";
+          if (isset($data['category']) && $data['category'] != 1000) {
+               $query .= " AND articles.category_id = '$data[category]'";
+          }
+          if (isset($data['search'])) {
+               $search = $this->db->getConn()->quote('%'.$data['search'].'%');
+               $query .= " AND articles.nom LIKE $search";
+          }
+          $query .= " LIMIT $limit OFFSET $offset";
+          $query = $this->db->getConn()->query($query);
           return $query->fetchAll(\PDO::FETCH_OBJ);
      }
 

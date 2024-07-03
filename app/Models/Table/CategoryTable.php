@@ -48,8 +48,8 @@ class CategoryTable extends Table
           $query = "UPDATE category SET nom = :nom WHERE id = :id";
           $result = $this->db->getConn()->prepare($query);
           $result->bindValue(":nom", $data['nom'], \PDO::PARAM_STR);
-          $result->bindValue(":id", $data['id'], \PDO::PARAM_INT);
-          $_SESSION['success'] = "Catégorie mise à jour";
+          $result->bindValue(":id", $id, \PDO::PARAM_INT);
+          $_SESSION['success'] = "Catégorie N° $id mise à jour";
           return $result->execute();
      }
 
