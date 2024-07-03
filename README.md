@@ -8,8 +8,8 @@ Ce projet est une application CRUD simple utilisant le modèle MVC en PHP. Il pe
      - **Controller/** : Contient les contrôleurs pour gérer les requêtes et les réponses.
      - **Models/** : Contient les modèles qui gèrent les données et les intéractions avec la base de donnée.
      - **Views/** : Contient les vues pour afficher les données à l'utilisateur.
-     -**App.php** : Conteneur d'injection de dépendances entre la connexion à la base donnée et les modèles.
-     -**Container.php** : Conteneur d'injection de dépendances pour les modèles et les contrôleurs.
+     - **App.php** : Conteneur d'injection de dépendances entre la connexion à la base donnée et les modèles.
+     - **Container.php** : Conteneur d'injection de dépendances pour les modèles et les contrôleurs.
 
 - **config/** : Contient les configurations de l'application.
      - **DataBase.php** : Classe pour la connexion à la base de données.
