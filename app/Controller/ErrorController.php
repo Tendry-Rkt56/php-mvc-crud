@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
-class ErrorController extends Controller
+class ErrorController
 {
 
      public function accessDenied ()
      {
-          return $this->render('404');
+          header('Location: 404.php');
+          exit();       
      }
 
 }
