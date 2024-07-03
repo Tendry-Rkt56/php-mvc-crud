@@ -3,6 +3,13 @@
 ## Description
 Ce projet est une application CRUD simple utilisant le modèle MVC en PHP. Il permet la gestion des articles et des catégories.
 
+** Points clés 
+- **MVC (Modèle-Vue-Controller)** : Structure de l'application pour séparer la logique métier, la gestion des données et la présentation.
+- **Design Patterns**: Ce projet implémente plusieurs design patterns pour améliorer la maintenabilité et l'évolution du code :
+     - **Singleton** : Assure qu'une classe n'ait qu'une seule instance et fournit un point d'accès global à cette instance.
+     - **Factory** : Définit une interface pour créer des objets sans spécifier les classes concrètes.
+     - **Injection de dépendances** : Facilite la gestion des dépendances et améliore la testabilité en injectant les les dépendance requises dans les classes au lieu de les instancier directement. 
+
 ## Structure du projet
 - **app/** : Contient la logique principale de l'application.
      - **Controller/** : Contient les contrôleurs pour gérer les requêtes et les réponses.
