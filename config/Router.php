@@ -4,12 +4,15 @@ use App\Container;
 use App\Controller\ArticleController;
 use App\Controller\CategoryController;
 use App\Controller\ErrorController;
+use App\Controller\HomeController;
 
 require_once '../vendor/altorouter/altorouter/AltoRouter.php';
 
 $router = new AltoRouter();
 
 $container = new Container();
+
+$router->map('GET', '/', fn () => $container->getController(HomeController::class)->home());
 
 // Routes pour les articles
 
