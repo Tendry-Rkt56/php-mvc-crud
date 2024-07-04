@@ -7,16 +7,7 @@ use AltoRouter;
 class Container 
 {
 
-     private static $app;
      private static $router;
-
-     public function getApp ()
-     {
-          if (self::$app == null) {
-               self::$app = new App();
-          }
-          return self::$app;
-     }
 
      public function router ()
      {
@@ -28,7 +19,7 @@ class Container
 
      public function getController (string $controller)
      {
-          return new $controller($this->getApp(), $this->router());
+          return new $controller(App::getApp(), $this->router());
      }
 
 }
