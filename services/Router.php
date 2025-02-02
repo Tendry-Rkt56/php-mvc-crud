@@ -18,6 +18,7 @@ $router->map('POST', '/articles/[i:id]', fn ($id) => $container->getController(A
 $router->map('GET', '/categories', fn () => $container->getController(CategoryController::class)->index($_GET), 'categories.index');
 $router->map('GET', '/categories/new', fn () => $container->getController(CategoryController::class)->create(), 'categories.create');
 $router->map('POST', '/categories/new', fn () => $container->getController(CategoryController::class)->store($_POST), 'categories.store');
+$router->map('GET', '/categories/edit-[i:id]', fn ($id) => $container->getController(CategoryController::class)->edit($id), 'categories.edit');
 $router->map('POST', '/categories/[i:id]', fn ($id) => $container->getController(CategoryController::class)->delete($id), 'categories.delete');
 
 $match =  $router->match();
