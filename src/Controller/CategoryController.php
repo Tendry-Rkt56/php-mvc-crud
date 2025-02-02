@@ -37,4 +37,10 @@ class CategoryController extends Controller
           return $this->redirect('categories.index');
      }
 
+     public function delete(int $id)
+     {
+          $this->getEntity(Category::class)->delete($id);
+          return $this->redirect('categories.index');
+     }
+
 }

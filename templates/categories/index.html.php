@@ -47,8 +47,8 @@ use Services\Session;
                                         <td><?=$category->nom?></td>
                                         <td>
                                              <div class="d-flex gap-1">
-                                                  <a href="/articles/edit-<?=$category->id?>" class="btn btn-success btn-sm">Editer</a>
-                                                  <form action="/articles/<?=$category->id?>" method="POST">
+                                                  <a href="/categories/edit-<?=$category->id?>" class="btn btn-success btn-sm">Editer</a>
+                                                  <form action="/categories/<?=$category->id?>" method="POST">
                                                        <input type="submit" class="btn btn-danger btn-sm" value="Supprimer">
                                                   </form>
                                              </div>
