@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Validator\Validator;
 use Services\Session;
 
 class Article extends Entity
@@ -54,8 +55,8 @@ class Article extends Entity
           }
           else $sql = "INSERT INTO articles(nom, prix, image) VALUES (:nom, :prix, :image)";
           $query = $this->getDb()->prepare($sql);
-          $query->bindValue(':nom', $data['nom'], \PDO::PARAM_STR);
-          $query->bindValue(':prix', $data['prix'], \PDO::PARAM_INT);
+          $query->bindValue(':nom', Validator::required('nom', $data['nom']), \PDO::PARAM_STR);
+          $query->bindValue(':prix', Validator::required('prix', $data['prix']), \PDO::PARAM_INT);
           $query->bindValue(':image', $data['image'], \PDO::PARAM_STR);
           if (isset($data['category']) && !empty($data['category'])) {
                $query->bindValue(':category', $data['category'], \PDO::PARAM_INT);
