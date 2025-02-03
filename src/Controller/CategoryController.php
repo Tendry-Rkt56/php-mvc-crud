@@ -45,6 +45,12 @@ class CategoryController extends Controller
           ]);
      }
 
+     public function update(int $id, array $data = [])
+     {
+          $this->getEntity(Category::class)->update($id, $data);
+          return $this->redirect('categories.index');
+     }
+
      public function delete(int $id)
      {
           $this->getEntity(Category::class)->delete($id);
