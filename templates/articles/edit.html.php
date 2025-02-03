@@ -3,8 +3,12 @@
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Articles ~ création</title>
-     <?php require_once 'components/head.html' ?>
+     <title>Articles ~ <?=$article->nom?></title>
+     <?php
+
+                        use Services\Session;
+
+ require_once 'components/head.html' ?>
 </head>
 <body>
      
@@ -12,13 +16,21 @@
 
      <div class="forms">
           <form method="POST" style="padding:20px;border-radius:4px;box-shadow:0 0 5px rgba(0,0,0,.2);height:300px;" class="gap-3 d-flex align-items-start justify-content-center flex-column vtsack">
-               <h2>Création d'article</h2>
+               <h2>Edition d'article</h2>
+               <div class="container">
+                    <?php foreach($_SESSION as $type => $message): ?>
+                         <?php if ($type == 'danger' || $type == "success"): ?>
+                              <div class="container alert alert-<?=$type?> text-center"><?=$message?></div>
+                              <?php Session::delete($type) ?>
+                         <?php endif ?>
+                    <?php endforeach ?>
+               </div>
                <div class="container row">
                     <div class="col-sm-6">
                          <input value="<?=$article->nom?>" required type="text" placeholder="Nom de l'article..." class="form-control" name="nom">
                     </div>
                     <div class="col-sm-6">
-                         <input value="<?=$article->prix?>" required type="number" placeholder="Prix de l'article..." class="form-control" name="prix">
+                         <input value="<?=$article->prix?>" type="number" placeholder="Prix de l'article..." class="form-control" name="prix">
                     </div>
                     <input type="hidden" value="" name="image">
                </div>

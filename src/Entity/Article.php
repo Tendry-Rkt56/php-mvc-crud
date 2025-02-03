@@ -71,14 +71,13 @@ class Article extends Entity
           }
           else $sql = "UPDATE articles SET nom = :nom, prix = :prix, image = :image WHERE id = :id";
           $query = $this->getDb()->prepare($sql);
-          $query->bindValue(':nom', $data['nom'], \PDO::PARAM_STR);
-          $query->bindValue(':prix', $data['prix'], \PDO::PARAM_INT);
+          $query->bindValue(':nom', Validator::required('nom', $data['nom']), \PDO::PARAM_STR);
+          $query->bindValue(':prix', Validator::required('prix', $data['prix']), \PDO::PARAM_INT);
           $query->bindValue(':image', $data['image'], \PDO::PARAM_STR);
           if (isset($data['category']) && !empty($data['category'])) {
                $query->bindValue(':category', $data['category'], \PDO::PARAM_INT);
           }
           $query->bindValue(':id', $id, \PDO::PARAM_INT);
-          Session::set('success', 'Article N°'.$id. ' mise à jour');
           return $query->execute();
      }
 
