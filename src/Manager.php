@@ -20,7 +20,7 @@ class Manager
           return self::$instance;
      }
 
-     public function getDb()
+     public function getDb(): DataBase
      {
           if (self::$db == null) self::$db = new DataBase('crud');
           return self::$db;

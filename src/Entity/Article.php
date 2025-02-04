@@ -55,7 +55,7 @@ class Article extends Entity
           }
           else $sql = "INSERT INTO articles(nom, prix, image) VALUES (:nom, :prix, :image)";
           $query = $this->getDb()->prepare($sql);
-          $query->bindValue(':nom', Validator::required('nom', $data['nom']), \PDO::PARAM_STR);
+          $query->bindValue(':nom', Validator::unique($this->table, 'nom', 'nom', $data['nom']), \PDO::PARAM_STR);
           $query->bindValue(':prix', Validator::required('prix', $data['prix']), \PDO::PARAM_INT);
           $query->bindValue(':image', $data['image'], \PDO::PARAM_STR);
           if (isset($data['category']) && !empty($data['category'])) {
@@ -71,7 +71,7 @@ class Article extends Entity
           }
           else $sql = "UPDATE articles SET nom = :nom, prix = :prix, image = :image WHERE id = :id";
           $query = $this->getDb()->prepare($sql);
-          $query->bindValue(':nom', Validator::required('nom', $data['nom']), \PDO::PARAM_STR);
+          $query->bindValue(':nom', Validator::unique($this->table, 'nom', 'nom', $data['nom'], $id), \PDO::PARAM_STR);
           $query->bindValue(':prix', Validator::required('prix', $data['prix']), \PDO::PARAM_INT);
           $query->bindValue(':image', $data['image'], \PDO::PARAM_STR);
           if (isset($data['category']) && !empty($data['category'])) {
