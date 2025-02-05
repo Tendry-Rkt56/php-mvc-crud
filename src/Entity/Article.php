@@ -48,7 +48,7 @@ class Article extends Entity
           return $query->fetch(\PDO::FETCH_OBJ);
      }
 
-     public function create(array $data = []): bool 
+     public function create(array $data = [], array $files = []): bool 
      {
           if (isset($data['category']) && !empty($data['category'])) {
                $sql = "INSERT INTO articles(nom, prix, image, category_id) VALUES (:nom, :prix, :image, :category)";
@@ -57,14 +57,14 @@ class Article extends Entity
           $query = $this->getDb()->prepare($sql);
           $query->bindValue(':nom', Validator::unique($this->table, 'nom', 'nom', $data['nom']), \PDO::PARAM_STR);
           $query->bindValue(':prix', Validator::required('prix', $data['prix']), \PDO::PARAM_INT);
-          $query->bindValue(':image', $data['image'], \PDO::PARAM_STR);
+          $query->bindValue(':image', imageUpload($files['image'], 'images/articles/'), \PDO::PARAM_STR);
           if (isset($data['category']) && !empty($data['category'])) {
                $query->bindValue(':category', $data['category'], \PDO::PARAM_INT);
           }
           return $query->execute();
      }
 
-     public function update(int $id, array $data = []): bool
+     public function update(int $id, array $data = [], array $files = []): bool
      {
           if (isset($data['category']) && !empty($data['category'])) {
                $sql = "UPDATE articles SET nom = :nom, prix = :prix, image = :image, category_id = :category WHERE id = :id";
@@ -73,7 +73,7 @@ class Article extends Entity
           $query = $this->getDb()->prepare($sql);
           $query->bindValue(':nom', Validator::unique($this->table, 'nom', 'nom', $data['nom'], $id), \PDO::PARAM_STR);
           $query->bindValue(':prix', Validator::required('prix', $data['prix']), \PDO::PARAM_INT);
-          $query->bindValue(':image', $data['image'], \PDO::PARAM_STR);
+          $query->bindValue(':image', imageUpload($files['image'], 'images/articles/', $this->find($id)), \PDO::PARAM_STR);
           if (isset($data['category']) && !empty($data['category'])) {
                $query->bindValue(':category', $data['category'], \PDO::PARAM_INT);
           }
