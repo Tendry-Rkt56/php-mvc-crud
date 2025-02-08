@@ -60,6 +60,49 @@ header nav ul li a {
      font-size:1.2rem;
 }
 
+.dashboard {
+     position:absolute;
+     top:50%;
+     left:50%;
+     transform:translate(-50%, -50%);
+     display: flex;
+     align-items:center;
+     justify-content: center;
+     flex-wrap: wrap;
+     width:80%;
+     gap:10px;
+}
+
+.item {
+     box-shadow: 0 0 10px rgba(0,0,0,0.3);
+     height:150px;
+     border-radius:4px;
+     display:flex;
+     align-items:center;
+     justify-content: center;
+     flex-direction: column;
+     width:230Px;
+     color:white;
+     text-decoration: none;
+}
+
+.item h2 {
+     font-size: 20px;
+}
+
+.item p {
+     font-size: 20px;
+     font-weight: bolder;
+}
+
+.item.articles {
+     background-color: rgb(7, 143, 98);
+}
+
+.item.categories {
+     background-color: rgb(132, 36, 223);
+}
+
 .containers {
      position:absolute;
      top:20%;
