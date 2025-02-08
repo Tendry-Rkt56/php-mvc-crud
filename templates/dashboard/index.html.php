@@ -11,7 +11,7 @@
      <div class="dashboard">
           <a href="/articles" class="item articles">
                <p><?=$articles?></p>
-               <h2>Les articles</h2>
+               <h2>Gérer les articles</h2>
           </a>
           <a href="/categories" class="item categories">
                <p><?=$categories?></p>
