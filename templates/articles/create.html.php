@@ -46,6 +46,7 @@ use Services\Session;
                          </select>
                     </div>
                </div>
+               <input type="hidden" name="token" value="<?=$token?>">
                <input type="submit" class="align-self-center my-3 btn btn-primary" value="Ajouter">
           </form>
      </div>

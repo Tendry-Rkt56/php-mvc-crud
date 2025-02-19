@@ -28,7 +28,7 @@ $router->map('POST', '/categories/edit-[i:id]', fn ($id) => $container->getContr
 $router->map('POST', '/categories/[i:id]', fn ($id) => $container->getController(CategoryController::class)->delete($id), 'categories.delete');
 // Routes pour les catégories
 
-$router->map('GET', '/', fn () => $container->getController(DashboardController::class)->index());
+$router->map('GET', '/', fn () => $container->getController(DashboardController::class)->index(), 'app.home');
 
 $router->map('GET', '/[*]', function () use ($container) {
      $container->getController(ErrorController::class)->page404();
