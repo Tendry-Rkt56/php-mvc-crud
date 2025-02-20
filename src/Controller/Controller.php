@@ -25,11 +25,6 @@ class Controller
      protected function checkToken(array $data = [])
      {
           if ($data['token'] !== Session::get('token')) {
-               file_put_contents(
-                    '../templates/errors/404.html', 
-                    str_replace(['ERROR 404', 'Page introuvable'], ['UNAUTHORIZED', 'Cette action n\'est pas autorisée'],
-                    file_get_contents('../templates/errors/404.html'))
-               );
                echo file_get_contents('../templates/errors/404.html');
                die;
           }
