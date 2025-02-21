@@ -29,6 +29,7 @@ class ArticleController extends Controller
                'maxPages' => $maxPages,
                'articlesLength' => $studentsLength,
                'count' => $count,
+               'token' => Session::get('token')
           ]);
 
      }
@@ -65,6 +66,7 @@ class ArticleController extends Controller
           $categories = $this->getEntity(Category::class)->findAll(); 
           return $this->render('articles/edit.html.php', [
                'article' => $article,
+               'token' => Session::get('token'),
                'categories' => $categories,
           ]);
      }
@@ -72,6 +74,7 @@ class ArticleController extends Controller
      public function update(int $id, array $data = [], array $files = [])
      {
           try {
+               $this->checkToken($data);
                $update = $this->getEntity(Article::class)->update($id, $data, $files);
                if ($update) {
                     Session::set('success', 'Article N°'.$id. ' mise à jour');
@@ -85,8 +88,9 @@ class ArticleController extends Controller
           }
      }
 
-     public function delete(int $id)
+     public function delete(int $id, array $data = [])
      {
+          $this->checkToken($data);
           $delete = $this->getEntity(Article::class)->delete($id, true);
           return $this->redirect('articles.index');
      }
