@@ -16,7 +16,7 @@ $router->map('GET', '/articles/create', fn () => $container->getController(Artic
 $router->map('POST', '/articles/create', fn () => $container->getController(ArticleController::class)->store($_POST, $_FILES), 'articles.store');
 $router->map('GET', '/articles/edit-[i:id]', fn ($id) => $container->getController(ArticleController::class)->edit($id), 'articles.edit');
 $router->map('POST', '/articles/edit-[i:id]', fn ($id) => $container->getController(ArticleController::class)->update($id, $_POST, $_FILES), 'articles.update');
-$router->map('POST', '/articles/[i:id]', fn ($id) => $container->getController(ArticleController::class)->delete($id), 'articles.delete');
+$router->map('POST', '/articles/[i:id]', fn ($id) => $container->getController(ArticleController::class)->delete($id, $_POST), 'articles.delete');
 // Routes liées aux articles
 
 // Routes pour les catégories
