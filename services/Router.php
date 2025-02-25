@@ -25,7 +25,7 @@ $router->map('GET', '/categories/new', fn () => $container->getController(Catego
 $router->map('POST', '/categories/new', fn () => $container->getController(CategoryController::class)->store($_POST), 'categories.store');
 $router->map('GET', '/categories/edit-[i:id]', fn ($id) => $container->getController(CategoryController::class)->edit($id), 'categories.edit');
 $router->map('POST', '/categories/edit-[i:id]', fn ($id) => $container->getController(CategoryController::class)->update($id, $_POST), 'categories.update');
-$router->map('POST', '/categories/[i:id]', fn ($id) => $container->getController(CategoryController::class)->delete($id), 'categories.delete');
+$router->map('POST', '/categories/[i:id]', fn ($id) => $container->getController(CategoryController::class)->delete($id, $_POST), 'categories.delete');
 // Routes pour les catégories
 
 $router->map('GET', '/', fn () => $container->getController(DashboardController::class)->index(), 'app.home');
