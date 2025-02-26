@@ -37,7 +37,7 @@ class CategoryController extends Controller
      public function store(array $data = [])
      {
           try {
-               $this->checkToken($data['token']);
+               $this->checkToken($data);
                $store = $this->getEntity(Category::class)->create($data);
                if ($store) {
                     Session::set('success', 'Nouvelle catégorie ajoutée');
@@ -63,7 +63,7 @@ class CategoryController extends Controller
      public function update(int $id, array $data = [])
      {
           try {
-               $this->checkToken($data['token']);
+               $this->checkToken($data);
                $update = $this->getEntity(Category::class)->update($id, $data);
                if ($update) {
                     Session::set('success', 'Catégorie N°'.$id. ' mise à jour');
@@ -79,7 +79,7 @@ class CategoryController extends Controller
 
      public function delete(int $id, array $data = [])
      {
-          $this->checkToken($data['token']);
+          $this->checkToken($data);
           $this->getEntity(Category::class)->delete($id);
           return $this->redirect('categories.index');
      }
