@@ -2,7 +2,8 @@
     "name": "tendry/crud",
     "autoload": {
         "psr-4": {
-            "Tendry\\Crud\\": "src/"
+            "App\\": "src/",
+            "Config\\": "config/"
         }
     },
     "authors": [
