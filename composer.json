@@ -1,0 +1,15 @@
+{
+    "name": "tendry/crud",
+    "autoload": {
+        "psr-4": {
+            "Tendry\\Crud\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tendry",
+            "email": "tendryzephyrin@gmail.com"
+        }
+    ],
+    "require": {}
+}
