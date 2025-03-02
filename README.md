@@ -3,7 +3,7 @@
 ## Description
 Ce projet est une application CRUD simple utilisant le modèle MVC en PHP. Il permet la gestion des articles et des catégories.
 
-## Points clés 
+<!-- ## Points clés 
 - **MVC (Modèle-Vue-Controller)** : Structure de l'application pour séparer la logique métier, la gestion des données et la présentation.
 - **Design Patterns**: Ce projet implémente plusieurs design patterns pour améliorer la maintenabilité et l'évolution du code :
      - **Singleton** : Assure qu'une classe n'ait qu'une seule instance et fournit un point d'accès global à cette instance.
@@ -52,4 +52,4 @@ Les contributions sont les bienvenues ! Veuillez ouvrir une issue ou soumettre u
 ## Contact
 - **Nom** : Tendry Zéphyrin
 - **Email** : tendryzephyrin@gmail.com
-- **GitHub** : [Tendry-Rkt56](https://github.com/Tendry-Rkt56)
+- **GitHub** : [Tendry-Rkt56](https://github.com/Tendry-Rkt56) -->
