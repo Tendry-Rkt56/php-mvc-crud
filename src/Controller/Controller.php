@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Manager;
+
 class Controller 
 {
 
@@ -15,6 +17,13 @@ class Controller
           extract($data);
           $view = '../templates/' . $template;
           require_once $view;
+     }
+
+     public function getEntity(string $table = '') 
+     {
+
+          return Manager::getInstance()->getEntity($table);
+
      }
 
 }

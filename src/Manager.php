@@ -11,7 +11,7 @@ class Manager
      private static $db;
      private array $entities = [];
 
-     public function getInstance(): self
+     public static function getInstance(): self
      {
           if (self::$instance == null) self::$instance = new self();
           return self::$instance;
