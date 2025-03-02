@@ -1,14 +1,19 @@
 <?php
 
 use App\Controller\ArticleController;
-use Config\AltoRouter;
+use Config\Routing;
 
-$router = AltoRouter::getInstance();
+$router = Routing::getInstance();
 
-$router->map('GET', '/articles', function() {
-     $controller = new ArticleController();
+$router->map('GET', '/articles', function () use ($router) {
+     $controller = new ArticleController($router);
      return $controller->index();
-});
+}, 'articles.index');
+
+$router->map('POST', '/articles/[i:id]', function ($id) use ($router) {
+     $controller = new ArticleController($router);
+     return $controller->delete($id);
+}, 'articles.delete');
 
 $match =  $router->match();
 if ($match !== null) {

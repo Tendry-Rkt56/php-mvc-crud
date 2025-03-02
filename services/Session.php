@@ -5,7 +5,7 @@ namespace Services;
 class Session
 {
 
-     public static function set(string $type = '', mixed $message)
+     public static function set(string $type = '', mixed $message = null)
      {
 
           $_SESSION[$type] = $message;

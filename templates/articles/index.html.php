@@ -4,7 +4,11 @@
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Les articles</title>
-     <?php require_once 'components/head.html' ?>
+     <?php
+
+use Services\Session;
+
+ require_once 'components/head.html' ?>
 </head>
 <body>
 
@@ -19,6 +23,14 @@
                          <input style="width:15%" type="text" class="form-control" placeholder="Rechercher..." name="search">
                          <input type="submit" class="btn btn-primary btn-sm" value="Rechercher">
                     </form>   
+                    <div class="container">
+                         <?php foreach($_SESSION as $type => $message): ?>
+                              <?php if ($type == 'danger' || $type == 'success'): ?>
+                                   <div class="text-center alert alert-<?=$type?>"><?=$message?></div>
+                                   <?php Session::delete($type) ?>
+                              <?php endif ?>
+                         <?php endforeach ?>
+                    </div>
                     <table class="table table-striped">
                          <thead>
                               <tr>
@@ -33,11 +45,11 @@
                                    <tr>
                                         <td><?=$article->id?></td>
                                         <td><?=$article->nom?></td>
-                                        <td><?=$article->prix?></td>
+                                        <td><?=number_format($article->prix, 2, '.', ' ')?> Ar</td>
                                         <td>
                                              <div class="d-flex gap-1">
                                                   <a href="" class="btn btn-success btn-sm">Editer</a>
-                                                  <form action="">
+                                                  <form action="/articles/<?=$article->id?>" method="POST">
                                                        <input type="submit" class="btn btn-danger btn-sm" value="Supprimer">
                                                   </form>
                                              </div>

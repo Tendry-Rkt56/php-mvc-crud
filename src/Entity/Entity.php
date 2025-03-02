@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Config\DataBase;
+use Services\Session;
 
 class Entity
 {
@@ -19,10 +20,19 @@ class Entity
           return $this->db->getConn();
      }
 
-     public function findAll() 
+     public function findAll(): array
      {
           $sql = "SELECT * FROM $this->table WHERE id > 0";
           return $this->getDb()->query($sql)->fetchAll(\PDO::FETCH_OBJ);
+     }
+
+     public function delete(int $id): bool
+     {
+          $sql = "DELETE FROM $this->table WHERE id = :id";
+          $query = $this->getDb()->prepare($sql);
+          $query->bindValue(':id', $id, \PDO::PARAM_INT);
+          Session::set('danger', $this->table. ' supprimée');
+          return $query->execute();
      }
 
 }

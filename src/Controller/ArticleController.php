@@ -17,4 +17,10 @@ class ArticleController extends Controller
 
      }
 
+     public function delete(int $id)
+     {
+          $delete = $this->getEntity(Article::class)->delete($id);
+          return $this->redirect('articles.index');
+     }
+
 }
