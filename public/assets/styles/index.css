@@ -8,9 +8,46 @@ html {
      scroll-behavior: smooth;
 }
 
+header {
+     display: flex;
+     align-items:center;
+     justify-content: space-between;
+     width:100%;
+     position:fixed;
+     top:0;
+     left:0;
+     background-color: white;
+     padding: 10px;
+     box-shadow:0 0 5px rgba(0,0,0,0.3);
+}
+
+header .logo {
+     width:20%;
+}
+
+header .logo h2 {
+     color: rgb(4, 186, 150);
+     font-size:3rem;
+     letter-spacing: 4px;
+     font-weight: bolder;
+}
+
+header nav {
+     width:80%;
+}
+
+header nav ul {
+     display: flex;
+     align-items:center;
+     justify-content: center;
+     gap:10px;
+     width:80%;
+}
+
 .containers {
      position:absolute;
      top:10%;
      left:3%;
      width:100%;
 }
+
