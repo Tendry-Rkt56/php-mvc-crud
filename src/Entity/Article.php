@@ -37,12 +37,17 @@ class Article extends Entity
 
      public function create(array $data = []): bool 
      {
-          $sql = "INSERT INTO articles(nom, prix, image, category_id) VALUES (:nom, :prix, :image, :category)";
+          if (isset($data['category']) && !empty($data['category'])) {
+               $sql = "INSERT INTO articles(nom, prix, image, category_id) VALUES (:nom, :prix, :image, :category)";
+          }
+          else $sql = "INSERT INTO articles(nom, prix, image) VALUES (:nom, :prix, :image)";
           $query = $this->getDb()->prepare($sql);
           $query->bindValue(':nom', $data['nom'], \PDO::PARAM_STR);
           $query->bindValue(':prix', $data['prix'], \PDO::PARAM_INT);
           $query->bindValue(':image', $data['image'], \PDO::PARAM_STR);
-          $query->bindValue(':category', $data['category'], \PDO::PARAM_INT);
+          if (isset($data['category']) && !empty($data['category'])) {
+               $query->bindValue(':category', $data['category'], \PDO::PARAM_INT);
+          }
           return $query->execute();
      }
 

@@ -15,11 +15,12 @@
                <h2>Création d'article</h2>
                <div class="container row">
                     <div class="col-sm-6">
-                         <input type="text" placeholder="Nom de l'article..." class="form-control" name="nom">
+                         <input required type="text" placeholder="Nom de l'article..." class="form-control" name="nom">
                     </div>
                     <div class="col-sm-6">
-                         <input type="number" placeholder="Prix de l'article..." class="form-control" name="prix">
+                         <input required type="number" placeholder="Prix de l'article..." class="form-control" name="prix">
                     </div>
+                    <input type="hidden" value="" name="image">
                </div>
                <div class="container row">
                     <div class="col-sm-6">

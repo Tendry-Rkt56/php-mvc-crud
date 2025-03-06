@@ -18,7 +18,7 @@ use Services\Session;
                <div class="d-flex align-items-start justify-content-start flex-column gap-2 flex-column">
                     <div class="container d-flex align-items-center justify-content-between flex-row">
                          <h2>Les articles</h2>
-                         <a href="" class="btn btn-secondary">Ajouter</a>
+                         <a href="/articles/create" class="btn btn-secondary">Ajouter</a>
                     </div>
                     <form action="" class="container d-flex align-items-center justify-content-start flex-row gap-2">
                          <input value="<?=$data['search'] ?? ''?>" style="width:15%" type="text" class="form-control" placeholder="Rechercher..." name="search">
