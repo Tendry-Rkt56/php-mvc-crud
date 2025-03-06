@@ -25,7 +25,7 @@ use Services\Session;
                          <select name="category" id="" class="form-select" style="width:15%;">
                               <option value="">Séléctionner une catégorie</option>
                               <?php foreach($categories as $category): ?>
-                                   <option <?php if ($category->id == $data['category']): ?> selected <?php endif ?> value="<?=$category->id?>"><?=$category->nom?></option>
+                                   <option <?php if (isset ($data['category']) && $category->id == $data['category']): ?> selected <?php endif ?> value="<?=$category->id?>"><?=$category->nom?></option>
                               <?php endforeach ?>
                          </select>
                          <input type="submit" class="btn btn-primary btn-sm" value="Rechercher">
