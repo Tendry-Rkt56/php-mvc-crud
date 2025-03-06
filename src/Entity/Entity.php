@@ -31,7 +31,7 @@ class Entity
           $sql = "DELETE FROM $this->table WHERE id = :id";
           $query = $this->getDb()->prepare($sql);
           $query->bindValue(':id', $id, \PDO::PARAM_INT);
-          Session::set('danger', $this->table. ' supprimée');
+          Session::set('danger', ucfirst($this->table). ' supprimée');
           return $query->execute();
      }
 

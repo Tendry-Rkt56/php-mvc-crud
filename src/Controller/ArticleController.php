@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use Config\Routing;
 
 class ArticleController extends Controller
 {

@@ -7,14 +7,7 @@ use Config\Routing;
 class Container 
 {
 
-     private static $instance;
      private array $controllers = [];
-
-     public static function get(): self
-     {
-          if (self::$instance == null) self::$instance = new self();
-          return self::$instance;
-     } 
 
      public function getController(string $controller = '') 
      {

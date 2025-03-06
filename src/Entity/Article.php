@@ -28,7 +28,7 @@ class Article extends Entity
                $query->bindValue(':search', $search, \PDO::PARAM_STR);
           }
           if (isset($data['category']) && !empty($data['category'])) {
-               $query->bindValue(':classeId', $data['category'], \PDO::PARAM_INT);
+               $query->bindValue(':categoryId', $data['category'], \PDO::PARAM_INT);
           }
           
           $query->execute();

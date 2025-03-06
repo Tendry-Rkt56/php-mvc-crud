@@ -20,17 +20,17 @@ use Services\Session;
                          <h2>Les articles</h2>
                          <a href="" class="btn btn-primary btn-sm">Ajouter</a>
                     </div>
-                    <form action=""  class="container d-flex align-items-center justify-content-start flex-row gap-2">
-                         <input style="width:15%" type="text" class="form-control" placeholder="Rechercher..." name="search">
+                    <form action="" class="container d-flex align-items-center justify-content-start flex-row gap-2">
+                         <input value="<?=$data['search'] ?? ''?>" style="width:15%" type="text" class="form-control" placeholder="Rechercher..." name="search">
                          <select name="category" id="" class="form-select" style="width:15%;">
                               <option value="">Séléctionner une catégorie</option>
                               <?php foreach($categories as $category): ?>
-                                   <option value="<?=$category->id?>"><?=$category->nom?></option>
+                                   <option <?php if ($category->id == $data['category']): ?> selected <?php endif ?> value="<?=$category->id?>"><?=$category->nom?></option>
                               <?php endforeach ?>
                          </select>
                          <input type="submit" class="btn btn-primary btn-sm" value="Rechercher">
                     </form>   
-                    <div class="container">
+                    <div class="mt-3 container">
                          <?php foreach($_SESSION as $type => $message): ?>
                               <?php if ($type == 'danger' || $type == 'success'): ?>
                                    <div class="text-center alert alert-<?=$type?>"><?=$message?></div>
@@ -52,7 +52,7 @@ use Services\Session;
                                    <tr>
                                         <td><?=$article->id?></td>
                                         <td><?=$article->nom?></td>
-                                        <td><?=number_format($article->prix, 2, '.', ' ')?> Ar</td>
+                                        <td class="fw-bolder"><?=number_format($article->prix, 2, '.', ' ')?> Ar</td>
                                         <td>
                                              <div class="d-flex gap-1">
                                                   <a href="" class="btn btn-success btn-sm">Editer</a>

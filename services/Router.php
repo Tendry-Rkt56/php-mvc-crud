@@ -1,19 +1,17 @@
 <?php
 
+use App\Container;
 use App\Controller\ArticleController;
 use Config\Routing;
 
 $router = Routing::getInstance();
+$container = new Container();
 
-$router->map('GET', '/articles', function () use ($router) {
-     $controller = new ArticleController($router);
-     return $controller->index($_GET);
+$router->map('GET', '/articles', function () use ($container) {
+     $container->getController(ArticleController::class)->index($_GET);
 }, 'articles.index');
 
-$router->map('POST', '/articles/[i:id]', function ($id) use ($router) {
-     $controller = new ArticleController($router);
-     return $controller->delete($id);
-}, 'articles.delete');
+$router->map('POST', '/articles/[i:id]', fn ($id) => $container->getController(ArticleController::class)->delete($id), 'articles.delete');
 
 $match =  $router->match();
 if ($match !== null) {

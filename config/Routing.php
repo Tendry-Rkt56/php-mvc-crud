@@ -12,7 +12,7 @@ class Routing
 
      public static function getInstance(): AltoRouter
      {
-          if (self::$instance == null) return new AltoRouter();
+          if (self::$instance == null) self::$instance = new AltoRouter();
           return self::$instance;
      }
 

@@ -8,12 +8,10 @@ use App\Manager;
 class Controller 
 {
 
-     private AltoRouter $router;
 
-     public function __construct(AltoRouter $router)
+     public function __construct(protected AltoRouter $router)
      {
           if (PHP_SESSION_NONE) session_start();
-          $this->router = $router;
      }
 
      protected function render(string $template, array $data = [])
