@@ -35,4 +35,14 @@ class Category extends Entity
           return $query->execute();
      }
 
+     public function update(int $id, array $data = []): bool
+     {
+          $sql = "UPDATE category SET nom = :nom WHERE id = :id";
+          $query = $this->getDb()->prepare($sql);
+          $query->bindValue(':nom', $data['nom'], \PDO::PARAM_STR);
+          $query->bindValue(':id', $id, \PDO::PARAM_INT);
+          Session::set('success', 'Categorie N°'.$id.' mise à jour');
+          return $query->execute();
+     }
+
 }
