@@ -57,6 +57,12 @@ class ArticleController extends Controller
           ]);
      }
 
+     public function update(int $id, array $data = [])
+     {
+          $update = $this->getEntity(Article::class)->update($id, $data);
+          return $this->redirect('articles.index');
+     }
+
      public function delete(int $id)
      {
           $delete = $this->getEntity(Article::class)->delete($id);

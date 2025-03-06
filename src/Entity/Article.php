@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Services\Session;
+
 class Article extends Entity
 {
 
@@ -74,6 +76,8 @@ class Article extends Entity
           if (isset($data['category']) && !empty($data['category'])) {
                $query->bindValue(':category', $data['category'], \PDO::PARAM_INT);
           }
+          $query->bindValue(':id', $id, \PDO::PARAM_INT);
+          Session::set('success', 'Article N°'.$id. ' mise à jour');
           return $query->execute();
      }
 
