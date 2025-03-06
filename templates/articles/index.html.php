@@ -12,6 +12,7 @@ use Services\Session;
 </head>
 <body>
 
+     <?php require_once 'components/header.html' ?>
      <div class="containers">
           <div class="container">
                <div class="d-flex align-items-start justify-content-start flex-column gap-2 flex-column">

@@ -2,10 +2,15 @@
      margin: 0;
      padding: 0;
      box-sizing: border-box;
+     font-size:"Poppins", sans-serif;
 }
 
 html {
      scroll-behavior: smooth;
+}
+
+body {
+     font-size: "Poppins", sans-serif;
 }
 
 header {
@@ -34,6 +39,7 @@ header .logo h2 {
 
 header nav {
      width:80%;
+     justify-self:flex-end;
 }
 
 header nav ul {
@@ -44,10 +50,20 @@ header nav ul {
      width:80%;
 }
 
+header nav ul li {
+     list-style: none;
+}
+
+header nav ul li a {
+     text-decoration:none;
+     color:#262626;
+     font-size:1.2rem;
+}
+
 .containers {
      position:absolute;
-     top:10%;
-     left:3%;
+     top:15%;
+     left:1%;
      width:100%;
 }
 
