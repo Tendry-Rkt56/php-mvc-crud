@@ -4,6 +4,9 @@ namespace App;
 
 use Config\DataBase;
 
+/**
+ * @template T of object
+ */
 class Manager 
 {
 
@@ -23,6 +26,11 @@ class Manager
           return self::$db;
      }
 
+     /**
+     * @template T of object
+     * @param class-string<T> $entity
+     * @return T
+     */
      public function getEntity(string $entity = '')
      {
           if (!array_key_exists($entity, $this->entities)) {

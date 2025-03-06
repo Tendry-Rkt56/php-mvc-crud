@@ -12,7 +12,7 @@ class ArticleController extends Controller
      public function index(array $data = []) 
      {
 
-          $count = $this->getEntity(Article::class)->count($data);
+          $count = $this->getEntity(Article::class)->count();
           $page = isset($data['page']) && !empty($data['page']) ? $data['page'] : 1;
           $limit = isset($data['limit']) && !empty($data['limit']) ? $data['limit'] : 10;
           $maxPages = ceil($count / $limit);

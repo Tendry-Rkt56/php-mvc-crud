@@ -21,6 +21,11 @@ class Controller
           require_once $view;
      }
 
+     /**
+     * @template T of object
+     * @param class-string<T> $table
+     * @return T
+     */
      public function getEntity(string $table = '') 
      {
 
