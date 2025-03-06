@@ -18,7 +18,7 @@ use Services\Session;
                <div class="d-flex align-items-start justify-content-start flex-column gap-2 flex-column">
                     <div class="container d-flex align-items-center justify-content-between flex-row">
                          <h2>Les articles</h2>
-                         <a href="" class="btn btn-primary btn-sm">Ajouter</a>
+                         <a href="" class="btn btn-secondary">Ajouter</a>
                     </div>
                     <form action="" class="container d-flex align-items-center justify-content-start flex-row gap-2">
                          <input value="<?=$data['search'] ?? ''?>" style="width:15%" type="text" class="form-control" placeholder="Rechercher..." name="search">
@@ -44,6 +44,7 @@ use Services\Session;
                                    <th>#</th>
                                    <th>Nom</th>
                                    <th>Prix</th>
+                                   <th>Catégorie associée</th>
                                    <th></th>
                               </tr>
                          </thead>
@@ -53,6 +54,7 @@ use Services\Session;
                                         <td><?=$article->id?></td>
                                         <td><?=$article->nom?></td>
                                         <td class="fw-bolder"><?=number_format($article->prix, 2, '.', ' ')?> Ar</td>
+                                        <td><?=$article->name?></td>
                                         <td>
                                              <div class="d-flex gap-1">
                                                   <a href="" class="btn btn-success btn-sm">Editer</a>
