@@ -65,6 +65,20 @@ use Services\Session;
                               <?php endforeach ?>
                          </tbody>
                     </table>
+                    <div style="width:60%" class="my-5 d-flex justify-content-between flex-row gap-1 align-items-center">
+                         <div class="justify-self-baseline fw-bolder"><?=$articlesLength?> / <?=$count?></div>
+                         <div class="d-flex justify-content-center flex-row gap-1 align-items-center">
+                              <?php for($i = 1; $i <= $maxPages; $i++): ?>
+                                   <?php 
+                                        $query = isset($data['search']) ? 'search='.$data['search'] : '';
+                                        $query .= isset($data['category']) ? '&category='.$data['category'] : '';     
+                                        $query .= isset($data['limit']) ? '&limit='.$data['limit'] : '';     
+                                   ?>
+                              <?php $class = $i == $page ? 'btn-primary' : 'btn-outline-primary' ?>
+                                   <a style="border-radius:50%;border:none" class="btn <?=$class?>" href="/articles?page=<?=$i?><?="&".$query?>"><?=$i?></a>
+                              <?php endfor ?>
+                         </div>
+                    </div>
                </div>
           </div>
      </div>

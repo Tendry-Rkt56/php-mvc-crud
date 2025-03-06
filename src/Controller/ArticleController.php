@@ -8,14 +8,26 @@ use App\Entity\Category;
 class ArticleController extends Controller
 {
 
-     public function index() 
+     public function index(array $data = []) 
      {
 
-          $articles = $this->getEntity(Article::class)->findAll();
+          $count = $this->getEntity(Article::class)->count($data);
+          $page = isset($data['page']) && !empty($data['page']) ? $data['page'] : 1;
+          $limit = isset($data['limit']) && !empty($data['limit']) ? $data['limit'] : 10;
+          $maxPages = ceil($count / $limit);
+          $offset = ($page - 1) * $limit;  
+          $articles = $this->getEntity(Article::class)->getAll($limit, $offset, $data);
+          $studentsLength = count($articles);
           $categories = $this->getEntity(Category::class)->findAll();
           return $this->render('articles/index.html.php', [
                'articles' => $articles,
                'categories' => $categories,
+               'data' => $data,
+               'page' => $page,
+               'limit' => $limit,
+               'maxPages' => $maxPages,
+               'articlesLength' => $studentsLength,
+               'count' => $count,
           ]);
 
      }

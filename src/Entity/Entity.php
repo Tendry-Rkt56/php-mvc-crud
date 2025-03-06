@@ -35,4 +35,14 @@ class Entity
           return $query->execute();
      }
 
+     public function count(): int
+     {
+          $sql = "SELECT count(*) FROM $this->table WHERE id > :id";
+          $query = $this->getDb()->prepare($sql);
+          $id = 0;
+          $query->bindValue(':id', $id, \PDO::PARAM_INT);
+          $query->execute();
+          return $query->fetchColumn();    
+     }
+
 }

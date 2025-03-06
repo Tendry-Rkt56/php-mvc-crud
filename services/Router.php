@@ -7,7 +7,7 @@ $router = Routing::getInstance();
 
 $router->map('GET', '/articles', function () use ($router) {
      $controller = new ArticleController($router);
-     return $controller->index();
+     return $controller->index($_GET);
 }, 'articles.index');
 
 $router->map('POST', '/articles/[i:id]', function ($id) use ($router) {
