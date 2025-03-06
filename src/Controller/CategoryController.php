@@ -25,4 +25,9 @@ class CategoryController extends Controller
           ]);
      }
 
+     public function create()
+     {
+          return $this->render('categories/create.html.php');
+     }
+
 }

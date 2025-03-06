@@ -16,6 +16,7 @@ $router->map('POST', '/articles/edit-[i:id]', fn ($id) => $container->getControl
 $router->map('POST', '/articles/[i:id]', fn ($id) => $container->getController(ArticleController::class)->delete($id), 'articles.delete');
 
 $router->map('GET', '/categories', fn () => $container->getController(CategoryController::class)->index($_GET), 'categories.index');
+$router->map('GET', '/categories/new', fn () => $container->getController(CategoryController::class)->create(), 'categories.create');
 
 $match =  $router->match();
 if ($match !== null) {
