@@ -7,10 +7,8 @@ use Config\Routing;
 $router = Routing::getInstance();
 $container = new Container();
 
-$router->map('GET', '/articles', function () use ($container) {
-     $container->getController(ArticleController::class)->index($_GET);
-}, 'articles.index');
-
+$router->map('GET', '/articles', fn () => $container->getController(ArticleController::class)->index($_GET), 'articles.index');
+$router->map('GET', '/articles/create', fn () => $container->getController(ArticleController::class)->create(), 'articles.create');
 $router->map('POST', '/articles/[i:id]', fn ($id) => $container->getController(ArticleController::class)->delete($id), 'articles.delete');
 
 $match =  $router->match();

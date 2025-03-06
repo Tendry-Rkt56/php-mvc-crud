@@ -67,3 +67,11 @@ header nav ul li a {
      width:100%;
 }
 
+.forms {
+     position:fixed;
+     top:50%;
+     left:50%;
+     width:60%;
+     transform:translate(-50%,-50%);
+}
+

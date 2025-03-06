@@ -33,6 +33,14 @@ class ArticleController extends Controller
 
      }
 
+     public function create() 
+     {
+          $categories = $this->getEntity(Category::class)->findAll();
+          return $this->render('articles/create.html.php', [
+               'categories' => $categories,
+          ]);
+     }
+
      public function delete(int $id)
      {
           $delete = $this->getEntity(Article::class)->delete($id);
