@@ -5,6 +5,6 @@ namespace App\Entity;
 class Category extends Entity
 {
 
-     protected string $table = 'categories';
+     protected string $table = 'category';
 
 }

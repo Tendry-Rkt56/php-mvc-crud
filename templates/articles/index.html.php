@@ -22,6 +22,12 @@ use Services\Session;
                     </div>
                     <form action=""  class="container d-flex align-items-center justify-content-start flex-row gap-2">
                          <input style="width:15%" type="text" class="form-control" placeholder="Rechercher..." name="search">
+                         <select name="category" id="" class="form-select" style="width:15%;">
+                              <option value="">Séléctionner une catégorie</option>
+                              <?php foreach($categories as $category): ?>
+                                   <option value="<?=$category->id?>"><?=$category->nom?></option>
+                              <?php endforeach ?>
+                         </select>
                          <input type="submit" class="btn btn-primary btn-sm" value="Rechercher">
                     </form>   
                     <div class="container">

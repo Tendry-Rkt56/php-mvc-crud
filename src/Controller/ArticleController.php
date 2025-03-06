@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Category;
 
 class ArticleController extends Controller
 {
@@ -11,8 +12,10 @@ class ArticleController extends Controller
      {
 
           $articles = $this->getEntity(Article::class)->findAll();
+          $categories = $this->getEntity(Category::class)->findAll();
           return $this->render('articles/index.html.php', [
                'articles' => $articles,
+               'categories' => $categories,
           ]);
 
      }
