@@ -35,13 +35,15 @@ class Article extends Entity
           return $query->fetchAll(\PDO::FETCH_OBJ);
      }
 
-     public function create(array $data = []) 
+     public function create(array $data = []): bool 
      {
           $sql = "INSERT INTO articles(nom, prix, image, category_id) VALUES (:nom, :prix, :image, :category)";
           $query = $this->getDb()->prepare($sql);
           $query->bindValue(':nom', $data['nom'], \PDO::PARAM_STR);
-          $query->bindValue(':prix', $data['nom'], \PDO::PARAM_INT);
-          $query->bindValue(':image', $data['nom'], \PDO::PARAM_STR);
+          $query->bindValue(':prix', $data['prix'], \PDO::PARAM_INT);
+          $query->bindValue(':image', $data['image'], \PDO::PARAM_STR);
+          $query->bindValue(':category', $data['category'], \PDO::PARAM_INT);
+          return $query->execute();
      }
 
 

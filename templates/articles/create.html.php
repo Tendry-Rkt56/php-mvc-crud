@@ -11,7 +11,7 @@
      <?php require_once 'components/header.html' ?>
 
      <div class="forms">
-          <form style="padding:20px;border-radius:4px;box-shadow:0 0 5px rgba(0,0,0,.2);height:300px;" class="gap-3 d-flex align-items-start justify-content-center flex-column vtsack">
+          <form method="POST" style="padding:20px;border-radius:4px;box-shadow:0 0 5px rgba(0,0,0,.2);height:300px;" class="gap-3 d-flex align-items-start justify-content-center flex-column vtsack">
                <h2>Création d'article</h2>
                <div class="container row">
                     <div class="col-sm-6">

@@ -35,10 +35,16 @@ class ArticleController extends Controller
 
      public function create() 
      {
-          $categories = $this->getEntity(Category::class)->findAll();
+          $categories = $this->getEntity(Category::class)->findAll(); 
           return $this->render('articles/create.html.php', [
                'categories' => $categories,
           ]);
+     }
+
+     public function store(array $data = [])
+     {
+          $store = $this->getEntity(Article::class)->create($data);
+          return $this->redirect('articles.index');
      }
 
      public function delete(int $id)
