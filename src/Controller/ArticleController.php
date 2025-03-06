@@ -47,6 +47,16 @@ class ArticleController extends Controller
           return $this->redirect('articles.index');
      }
 
+     public function edit(int $id)
+     {
+          $article = $this->getEntity(Article::class)->find($id);
+          $categories = $this->getEntity(Category::class)->findAll(); 
+          return $this->render('articles/edit.html.php', [
+               'article' => $article,
+               'categories' => $categories,
+          ]);
+     }
+
      public function delete(int $id)
      {
           $delete = $this->getEntity(Article::class)->delete($id);

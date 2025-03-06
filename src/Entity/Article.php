@@ -51,5 +51,21 @@ class Article extends Entity
           return $query->execute();
      }
 
+     public function update(int $id, array $data = []): bool
+     {
+          if (isset($data['category']) && !empty($data['category'])) {
+               $sql = "UPDATE articles SET nom = :nom, prix = :prix, image = :image, category_id = :category WHERE id = :id";
+          }
+          else $sql = "UPDATE articles SET nom = :nom, prix = :prix, image = :image WHERE id = :id";
+          $query = $this->getDb()->prepare($sql);
+          $query->bindValue(':nom', $data['nom'], \PDO::PARAM_STR);
+          $query->bindValue(':prix', $data['prix'], \PDO::PARAM_INT);
+          $query->bindValue(':image', $data['image'], \PDO::PARAM_STR);
+          if (isset($data['category']) && !empty($data['category'])) {
+               $query->bindValue(':category', $data['category'], \PDO::PARAM_INT);
+          }
+          return $query->execute();
+     }
+
 
 }

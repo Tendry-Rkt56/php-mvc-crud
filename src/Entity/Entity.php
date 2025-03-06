@@ -45,4 +45,13 @@ class Entity
           return $query->fetchColumn();    
      }
 
+     public function find(int $id)
+     {
+          $sql = "SELECT * FROM $this->table WHERE id = :id";
+          $query = $this->getDb()->prepare($sql);
+          $query->bindValue(':id', $id, \PDO::PARAM_INT);
+          $query->execute();
+          return $query->fetch(\PDO::FETCH_OBJ);
+     }
+
 }
