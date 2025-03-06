@@ -57,7 +57,7 @@ use Services\Session;
                                         <td><?=$article->name?></td>
                                         <td>
                                              <div class="d-flex gap-1">
-                                                  <a href="" class="btn btn-success btn-sm">Editer</a>
+                                                  <a href="/articles/edit-<?=$article->id?>" class="btn btn-success btn-sm">Editer</a>
                                                   <form action="/articles/<?=$article->id?>" method="POST">
                                                        <input type="submit" class="btn btn-danger btn-sm" value="Supprimer">
                                                   </form>

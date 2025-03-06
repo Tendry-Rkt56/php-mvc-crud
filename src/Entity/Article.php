@@ -35,6 +35,16 @@ class Article extends Entity
           return $query->fetchAll(\PDO::FETCH_OBJ);
      }
 
+     public function find(int $id)
+     {
+          $sql = "SELECT a.*, c.id AS category_id FROM articles AS a LEFT JOIN category AS c ON 
+               a.category_id = c.id WHERE a.id = :id";
+          $query = $this->getDb()->prepare($sql);
+          $query->bindValue(':id', $id, \PDO::PARAM_INT);
+          $query->execute();
+          return $query->fetch(\PDO::FETCH_OBJ);
+     }
+
      public function create(array $data = []): bool 
      {
           if (isset($data['category']) && !empty($data['category'])) {
