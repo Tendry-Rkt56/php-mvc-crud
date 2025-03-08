@@ -32,7 +32,7 @@ $router->map('GET', '/', fn () => $container->getController(DashboardController:
 
 $router->map('GET', '/[*]', function () use ($container) {
      $container->getController(ErrorController::class)->page404();
-});
+}, 'app.error');
 
 $match =  $router->match();
 if ($match !== null) {

@@ -22,6 +22,16 @@ class Controller
           require_once $view;
      }
 
+     protected function checkToken(array $data = [])
+     {
+          if ($data['token'] !== Session::set('token')) {
+               $error = file_get_contents('../../templates/errors/404.html');
+               str_replace(['ERROR 404', 'Page introuvable'], ['419 Page Expired', 'Invalid CSRF Token'], $error);
+               file_put_contents('../../templates/errors/404.html', $error);
+               return $this->redirect('');
+          }
+     }
+
      /**
      * @template T of object
      * @param class-string<T> $table
@@ -34,6 +44,7 @@ class Controller
 
      public function redirect(string $route = '', array $params = [])
      {
+          Session::set('back', $this->router->())
           header('Location: '.$this->router->generate($route, $params));
           exit;
      }
