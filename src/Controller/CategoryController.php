@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use Services\Session;
 
 class CategoryController extends Controller
 {
@@ -33,8 +34,18 @@ class CategoryController extends Controller
 
      public function store(array $data = [])
      {
-          $this->getEntity(Category::class)->create($data);
-          return $this->redirect('categories.index');
+          try {
+               $store = $this->getEntity(Category::class)->create($data);
+               if ($store) {
+                    Session::set('success', 'Nouvelle catégorie ajoutée');
+                    return $this->redirect('categories.index');
+               }
+               throw new \Exception("Erreur lors de la sauvegarde des données");
+          }
+          catch(\Exception $e) {
+               Session::set('danger', $e->getMessage());
+               return $this->redirect('categories.create');
+          }
      }
 
      public function edit(int $id)
@@ -47,8 +58,18 @@ class CategoryController extends Controller
 
      public function update(int $id, array $data = [])
      {
-          $this->getEntity(Category::class)->update($id, $data);
-          return $this->redirect('categories.index');
+          try {
+               $update = $this->getEntity(Category::class)->update($id, $data);
+               if ($update) {
+                    Session::set('success', 'Catégorie N°'.$id. ' mise à jour');
+                    return $this->redirect('categories.index');
+               }
+               throw new \Exception("Erreur lors de la sauvegarde des données");
+          }
+          catch(\Exception $e) {
+               Session::set('danger', $e->getMessage());
+               return $this->redirect('categories.edit', ['id' => $id]);
+          }
      }
 
      public function delete(int $id)
