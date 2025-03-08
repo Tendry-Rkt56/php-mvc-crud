@@ -12,7 +12,7 @@ class Controller
      public function __construct(protected AltoRouter $router)
      {
           if (PHP_SESSION_NONE) session_start();
-          Session::set('token', bin2hex(random_bytes(32)));
+          if (!isset($_SESSION['token'])) Session::set('token', bin2hex(random_bytes(32)));
      }
 
      protected function render(string $template, array $data = [])
@@ -24,11 +24,12 @@ class Controller
 
      protected function checkToken(array $data = [])
      {
-          if ($data['token'] !== Session::get('token')) {
+          if (!isset($data['token']) || $data['token'] !== Session::get('token')) {
                http_response_code(401);
                echo file_get_contents('../templates/errors/unauthorized.html');
                die;
           }
+          Session::set('token', bin2hex(random_bytes(32)));
      }
 
      /**
