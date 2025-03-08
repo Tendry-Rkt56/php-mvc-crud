@@ -4,14 +4,15 @@ namespace App\Controller;
 
 use AltoRouter;
 use App\Manager;
+use Services\Session;
 
 class Controller 
 {
 
-
      public function __construct(protected AltoRouter $router)
      {
           if (PHP_SESSION_NONE) session_start();
+          Session::set('token', bin2hex(random_bytes(32)));
      }
 
      protected function render(string $template, array $data = [])
@@ -28,9 +29,7 @@ class Controller
      */
      public function getEntity(string $table = '') 
      {
-
           return Manager::getInstance()->getEntity($table);
-
      }
 
      public function redirect(string $route = '', array $params = [])
