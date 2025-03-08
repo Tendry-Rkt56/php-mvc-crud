@@ -3,6 +3,7 @@
 use App\Container;
 use App\Controller\ArticleController;
 use App\Controller\CategoryController;
+use App\Controller\ErrorController;
 use Config\Routing;
 
 $router = Routing::getInstance();
@@ -17,12 +18,18 @@ $router->map('POST', '/articles/edit-[i:id]', fn ($id) => $container->getControl
 $router->map('POST', '/articles/[i:id]', fn ($id) => $container->getController(ArticleController::class)->delete($id), 'articles.delete');
 // Routes liées aux articles
 
+// Routes pour les catégories
 $router->map('GET', '/categories', fn () => $container->getController(CategoryController::class)->index($_GET), 'categories.index');
 $router->map('GET', '/categories/new', fn () => $container->getController(CategoryController::class)->create(), 'categories.create');
 $router->map('POST', '/categories/new', fn () => $container->getController(CategoryController::class)->store($_POST), 'categories.store');
 $router->map('GET', '/categories/edit-[i:id]', fn ($id) => $container->getController(CategoryController::class)->edit($id), 'categories.edit');
 $router->map('POST', '/categories/edit-[i:id]', fn ($id) => $container->getController(CategoryController::class)->update($id, $_POST), 'categories.update');
 $router->map('POST', '/categories/[i:id]', fn ($id) => $container->getController(CategoryController::class)->delete($id), 'categories.delete');
+// Routes pour les catégories
+
+$router->map('GET', '/[*]', function () use ($container) {
+     $container->getController(ErrorController::class)->page404();
+});
 
 $match =  $router->match();
 if ($match !== null) {
