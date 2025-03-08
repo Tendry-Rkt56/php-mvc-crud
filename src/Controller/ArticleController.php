@@ -41,11 +41,11 @@ class ArticleController extends Controller
           ]);
      }
 
-     public function store(array $data = [])
+     public function store(array $data = [], array $files = [])
      {
           try {
 
-               $store = $this->getEntity(Article::class)->create($data);
+               $store = $this->getEntity(Article::class)->create($data, $files);
                if ($store) {
                     Session::set('success', 'Nouvelle article crée');
                     return $this->redirect('articles.index');
@@ -68,10 +68,10 @@ class ArticleController extends Controller
           ]);
      }
 
-     public function update(int $id, array $data = [])
+     public function update(int $id, array $data = [], array $files = [])
      {
           try {
-               $update = $this->getEntity(Article::class)->update($id, $data);
+               $update = $this->getEntity(Article::class)->update($id, $data, $files);
                if ($update) {
                     Session::set('success', 'Article N°'.$id. ' mise à jour');
                     return $this->redirect('articles.index');
