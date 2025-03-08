@@ -25,7 +25,8 @@ class Controller
      protected function checkToken(array $data = [])
      {
           if ($data['token'] !== Session::get('token')) {
-               echo file_get_contents('../templates/errors/404.html');
+               http_response_code(401);
+               echo file_get_contents('../templates/errors/unauthorized.html');
                die;
           }
      }
