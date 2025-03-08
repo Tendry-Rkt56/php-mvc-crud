@@ -3,6 +3,7 @@
 use App\Container;
 use App\Controller\ArticleController;
 use App\Controller\CategoryController;
+use App\Controller\DashboardController;
 use App\Controller\ErrorController;
 use Config\Routing;
 
@@ -26,6 +27,8 @@ $router->map('GET', '/categories/edit-[i:id]', fn ($id) => $container->getContro
 $router->map('POST', '/categories/edit-[i:id]', fn ($id) => $container->getController(CategoryController::class)->update($id, $_POST), 'categories.update');
 $router->map('POST', '/categories/[i:id]', fn ($id) => $container->getController(CategoryController::class)->delete($id), 'categories.delete');
 // Routes pour les catégories
+
+$router->map('GET', '/', fn () => $container->getController(DashboardController::class)->index());
 
 $router->map('GET', '/[*]', function () use ($container) {
      $container->getController(ErrorController::class)->page404();
