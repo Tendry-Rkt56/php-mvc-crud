@@ -38,11 +38,13 @@ class ArticleController extends Controller
           $categories = $this->getEntity(Category::class)->findAll(); 
           return $this->render('articles/create.html.php', [
                'categories' => $categories,
+               'token' => Session::get('token'),
           ]);
      }
 
      public function store(array $data = [], array $files = [])
      {
+          $this->checkToken($data);
           try {
 
                $store = $this->getEntity(Article::class)->create($data, $files);
