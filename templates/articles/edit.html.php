@@ -32,7 +32,7 @@
                     <div class="col-sm-6">
                          <input value="<?=$article->prix?>" type="number" placeholder="Prix de l'article..." class="form-control" name="prix">
                     </div>
-                    <input type="hidden" value="" name="image">
+                    <input type="hidden" value="<?=$token?>" name="token">
                </div>
                <div class="container row">
                     <div class="col-sm-6">
