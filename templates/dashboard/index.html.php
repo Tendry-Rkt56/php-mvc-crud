@@ -15,7 +15,7 @@
           </a>
           <a href="/categories" class="item categories">
                <p><?=$categories?></p>
-               <h2>Les catégories</h2>
+               <h2>Gérer les catégories</h2>
           </a>
      </div>
 </body>
