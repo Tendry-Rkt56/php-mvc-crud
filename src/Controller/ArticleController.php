@@ -44,9 +44,8 @@ class ArticleController extends Controller
 
      public function store(array $data = [], array $files = [])
      {
-          $this->checkToken($data);
           try {
-
+               $this->checkToken($data);
                $store = $this->getEntity(Article::class)->create($data, $files);
                if ($store) {
                     Session::set('success', 'Nouvelle article crée');
