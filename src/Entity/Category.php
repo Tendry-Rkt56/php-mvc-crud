@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use Services\Session;
+use App\Validator\Validator;
 
 class Category extends Entity
 {
@@ -30,8 +30,7 @@ class Category extends Entity
      {
           $sql = "INSERT INTO $this->table(nom) VALUES (:nom)";
           $query = $this->getDb()->prepare($sql);
-          $query->bindValue(':nom', $data['nom'], \PDO::PARAM_STR);
-          Session::set('success', 'Nouvelle catégorie créée');
+          $query->bindValue(':nom', Validator::unique('articles', 'nom','nom', $data['nom']), \PDO::PARAM_STR);
           return $query->execute();
      }
 
@@ -39,9 +38,8 @@ class Category extends Entity
      {
           $sql = "UPDATE category SET nom = :nom WHERE id = :id";
           $query = $this->getDb()->prepare($sql);
-          $query->bindValue(':nom', $data['nom'], \PDO::PARAM_STR);
+          $query->bindValue(':nom', Validator::unique('articles', 'nom', 'nom', $data['nom'], $id), \PDO::PARAM_STR);
           $query->bindValue(':id', $id, \PDO::PARAM_INT);
-          Session::set('success', 'Categorie N°'.$id.' mise à jour');
           return $query->execute();
      }
 
