@@ -26,10 +26,11 @@ class Entity
           return $this->getDb()->query($sql)->fetchAll(\PDO::FETCH_OBJ);
      }
 
-     public function delete(int $id): bool
+     public function delete(int $id, bool $file = false): bool
      {
           $sql = "DELETE FROM $this->table WHERE id = :id";
           $query = $this->getDb()->prepare($sql);
+          $file ? removeFile($this->find($id)->image) : '';
           $query->bindValue(':id', $id, \PDO::PARAM_INT);
           Session::set('danger', ucfirst($this->table). ' supprimée');
           return $query->execute();
