@@ -5,7 +5,10 @@
             "App\\": "src/",
             "Config\\": "config/",
             "Services\\": "services/"
-        }
+        },
+        "files": [
+            "utils/imageUpload.php"
+        ]
     },
     "authors": [
         {
