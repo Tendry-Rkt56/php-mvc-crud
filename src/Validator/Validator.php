@@ -43,7 +43,6 @@ class Validator
 
      public static function unique(string $table, string $colonne, string $field, string $value, ?int $id = null): string
      {
-          $value = self::email($field, $value);
           $sql = "SELECT count(*) FROM $table WHERE $colonne = :value";
           if ($id != null) {
                $sql .= " AND id != :id";
@@ -55,7 +54,7 @@ class Validator
           }
           $query->execute();
           if ($query->fetchColumn() == 0) return $value;
-          throw new \Exception("$value existe déjà");
+          throw new \Exception("<strong>$value</strong> existe déjà");
      }
 
 
