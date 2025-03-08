@@ -70,8 +70,18 @@ class ArticleController extends Controller
 
      public function update(int $id, array $data = [])
      {
-          $update = $this->getEntity(Article::class)->update($id, $data);
-          return $this->redirect('articles.index');
+          try {
+               $update = $this->getEntity(Article::class)->update($id, $data);
+               if ($update) {
+                    Session::set('success', 'Article N°'.$id. ' mise à jour');
+                    return $this->redirect('articles.index');
+               }
+               throw new \Exception('Erreur lors de la sauvegarde des données');
+          }
+          catch(\Exception $e) {
+               Session::set('danger', $e->getMessage());
+               return $this->redirect('articles.edit', ['id' => $id]);
+          }
      }
 
      public function delete(int $id)
