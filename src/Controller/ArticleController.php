@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Category;
-use Config\Routing;
+use Services\Session;
 
 class ArticleController extends Controller
 {
@@ -43,8 +43,19 @@ class ArticleController extends Controller
 
      public function store(array $data = [])
      {
-          $store = $this->getEntity(Article::class)->create($data);
-          return $this->redirect('articles.index');
+          try {
+
+               $store = $this->getEntity(Article::class)->create($data);
+               if ($store) {
+                    Session::set('success', 'Nouvelle article crée');
+                    return $this->redirect('articles.index');
+               }
+               throw new \Exception('Erreur lors de la sauvegarde des données');
+          }
+          catch(\Exception $e) {
+               Session::set('danger', $e->getMessage());
+               return $this->redirect('articles.create');
+          }
      }
 
      public function edit(int $id)
