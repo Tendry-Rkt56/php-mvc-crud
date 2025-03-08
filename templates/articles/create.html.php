@@ -12,7 +12,7 @@ use Services\Session;
 </head>
 <body>
      
-     <?php require_once 'components/header.html' ?>
+     <?php require_once 'components/header.html.php' ?>
 
      <div class="forms">
           <form method="POST" enctype="multipart/form-data" style="padding:20px;border-radius:4px;box-shadow:0 0 5px rgba(0,0,0,.2);height:300px;" class="gap-3 d-flex align-items-start justify-content-center flex-column vtsack">

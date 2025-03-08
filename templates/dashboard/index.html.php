@@ -7,7 +7,7 @@
      <?php require_once 'components/head.html' ?>
 </head>
 <body>
-     <?php require_once 'components/header.html' ?>
+     <?php require_once 'components/header.html.php' ?>
      <div class="dashboard">
           <a href="/articles" class="item articles">
                <p><?=$articles?></p>

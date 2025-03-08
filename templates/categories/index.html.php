@@ -11,7 +11,7 @@ use Services\Session;
 </head>
 <body>
 
-     <?php require_once 'components/header.html' ?>
+     <?php require_once 'components/header.html.php' ?>
      <div class="containers">
           <div class="container">
                <div class="d-flex align-items-start justify-content-start flex-column gap-2 flex-column">

@@ -45,19 +45,30 @@ header nav {
 header nav ul {
      display: flex;
      align-items:center;
-     justify-content: center;
+     justify-content: flex-end;
      gap:10px;
      width:80%;
 }
 
 header nav ul li {
      list-style: none;
+     margin: 0px 20px;
 }
 
 header nav ul li a {
      text-decoration:none;
      color:#262626;
      font-size:1.2rem;
+     font-weight: 600;
+     transition: .3s;
+}
+
+header nav ul li a:hover {
+     color:#6d6d6d;
+}
+
+header nav ul li a.active {
+     color:rgb(23, 23, 240);
 }
 
 .dashboard {
