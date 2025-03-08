@@ -41,7 +41,7 @@ use Services\Session;
                     <table class="table table-striped">
                          <thead>
                               <tr>
-                                   <th>#</th>
+                                   <th></th>
                                    <th>Nom</th>
                                    <th>Prix</th>
                                    <th>Catégorie associée</th>
@@ -51,7 +51,11 @@ use Services\Session;
                          <tbody>
                               <?php foreach($articles as $article): ?>
                                    <tr>
-                                        <td><?=$article->id?></td>
+                                        <td>
+                                             <?php if (isset($article->image) && !empty($article->image)): ?>
+                                                  <img src="<?=$article->image?>" style="width:40px;height:40px;border-radius:50%" alt="">
+                                             <?php endif ?>
+                                        </td>
                                         <td><?=$article->nom?></td>
                                         <td class="fw-bolder"><?=number_format($article->prix, 2, '.', ' ')?> Ar</td>
                                         <td><?=$article->name?></td>
