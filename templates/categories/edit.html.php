@@ -28,6 +28,7 @@
                     <input value="<?=$category->nom?>" required type="text" placeholder="Nom de la catégorie..." class="form-control" name="nom">
                     <input type="submit" class="align-self-center my-3 btn btn-primary" value="Ajouter">
                </div>
+               <input type="hidden" name="token" value="<?=$token?>">
           </form>
      </div>
 

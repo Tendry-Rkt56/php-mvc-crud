@@ -48,6 +48,7 @@ use Services\Session;
                                              <div class="d-flex gap-1">
                                                   <a href="/categories/edit-<?=$category->id?>" class="btn btn-success btn-sm">Editer</a>
                                                   <form action="/categories/<?=$category->id?>" method="POST">
+                                                       <input type="hidden" name="token" value="<?=$token?>">
                                                        <input type="submit" class="btn btn-danger btn-sm" value="Supprimer">
                                                   </form>
                                              </div>
