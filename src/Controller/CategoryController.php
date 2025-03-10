@@ -24,17 +24,20 @@ class CategoryController extends Controller
                'count' => $count,
                'categoriesLength' => $categoriesLength,
                'data' => $data,
+               'token' => Session::get('token'),
           ]);
      }
 
      public function create()
      {
-          return $this->render('categories/create.html.php');
+          $token = Session::get('token');
+          return $this->render('categories/create.html.php', compact('token'));
      }
 
      public function store(array $data = [])
      {
           try {
+               $this->checkToken($data['token']);
                $store = $this->getEntity(Category::class)->create($data);
                if ($store) {
                     Session::set('success', 'Nouvelle catégorie ajoutée');
@@ -53,12 +56,14 @@ class CategoryController extends Controller
           $category = $this->getEntity(Category::class)->find($id);
           return $this->render('categories/edit.html.php', [
                'category' => $category,
+               'token' => Session::get('token'),
           ]);
      }
 
      public function update(int $id, array $data = [])
      {
           try {
+               $this->checkToken($data['token']);
                $update = $this->getEntity(Category::class)->update($id, $data);
                if ($update) {
                     Session::set('success', 'Catégorie N°'.$id. ' mise à jour');
@@ -72,8 +77,9 @@ class CategoryController extends Controller
           }
      }
 
-     public function delete(int $id)
+     public function delete(int $id, array $data = [])
      {
+          $this->checkToken($data['token']);
           $this->getEntity(Category::class)->delete($id);
           return $this->redirect('categories.index');
      }
