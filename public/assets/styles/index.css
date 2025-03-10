@@ -61,7 +61,7 @@ header nav ul li a {
      color:#262626;
      font-size:1.2rem;
      font-weight: 600;
-     transition: .3s;
+     transition: .1s;
 }
 
 header nav ul li a:hover {
